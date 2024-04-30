@@ -1,0 +1,33 @@
+<div>
+  <% flash.each do |type, message| %>
+    <div class="<%= type %>"><%= message %></div>
+  <% end %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited registration:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h1 class="font-bold text-4xl">Sign Up</h1>
+  <%= form_for @user, url: signup_path, html: { method: :post, data: { turbo: false } } do |f| %>
+    <div class="field">
+      <%= f.label :username, "Username:" %>
+      <%= f.text_field :username, required: true %>
+    </div>
+    <div class="field">
+      <%= f.label :password, "Password:" %>
+      <%= f.password_field :password, required: true %>
+    </div>
+    <div class="field">
+      <%= f.label :verify_password, "Verify Password:" %>
+      <%= f.password_field :verify_password, required: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Register" %>
+    </div>
+  <% end %>
+</div>
