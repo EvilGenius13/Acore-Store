@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if params[:user][:password] != params[:user][:verify_password]
+    
+    if !password_match?(params)
       @user.errors.add(:password, 'does not match the verification password.')
       render :new and return
     end
@@ -36,5 +37,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :verify_password)
+  end
+
+  def password_match?(params)
+    params[:user][:password] == params[:user][:verify_password]
   end
 end
