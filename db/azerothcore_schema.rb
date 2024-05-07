@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_175247) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_06_204601) do
   create_table "account", id: { type: :integer, comment: "Identifier", unsigned: true }, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", comment: "Account System", force: :cascade do |t|
     t.string "username", limit: 32, default: "", null: false
     t.binary "salt", limit: 32, null: false
@@ -87,6 +87,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_175247) do
     t.integer "unbandate", null: false, unsigned: true
     t.string "bannedby", limit: 50, default: "[Console]", null: false
     t.string "banreason", default: "no reason", null: false
+  end
+
+  create_table "items", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "mainclass"
+    t.string "subclass"
+    t.float "price"
+    t.boolean "for_sale"
+    t.integer "amount_purchased"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "logs", id: false, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|

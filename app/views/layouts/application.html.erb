@@ -9,11 +9,16 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= favicon_link_tag 'favicon.ico' %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <body class="flex flex-col min-h-screen">
+      <%= render 'shared/navbar' %>
+      <div class="flex flex-1">
+      <%= render 'shared/sidebar' %>
+      <main class="flex-1 p-4 ml-64"> <!-- Adjust marginLeft according to your sidebar's width -->
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
