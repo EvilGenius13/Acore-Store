@@ -1,0 +1,19 @@
+<div>
+  <% flash.each do |type, message| %>
+    <div class="<%= type %>"><%= message %></div>
+  <% end %>
+  <h1 class="font-bold text-4xl">Admin Login</h1>
+  <%= form_with scope: :session, url: admin_login_path, local: true, data: { turbo: false } do |form| %>
+  <div class="field">
+    <%= form.label :username, "Username:" %>
+    <%= form.text_field :username, required: true %>
+  </div>
+  <div class="field">
+    <%= form.label :password, "Password:" %>
+    <%= form.password_field :password, required: true %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Login" %>
+  </div>
+<% end %>
+</div>
